@@ -1,0 +1,5 @@
+sh==1.14.2
+Cython
+buildozer
+#sh==1.14.0  OK
+#sh==1.14.3 NOK

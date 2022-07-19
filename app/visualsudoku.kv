@@ -1,0 +1,214 @@
+# Visual Sudoku App
+#
+# __author__    = "Nathalie Rousse"
+# __copyright__ = "Copyright 2020, INRAE"
+# __license__   = "MIT"
+
+<CustomPopup>:
+    id: popup
+    auto_dismiss: False
+    contentBox: content_box
+
+    BoxLayout:
+        id: content_box
+        orientation: "vertical"
+        content: content_text
+        spacing: 2
+        padding: 2
+
+        ScrollView:
+            effect_cls: "ScrollEffect" # prevents overscrolling
+            Label:
+                id: content_text
+                size_hint_y: None
+                height: self.texture_size[1]
+                text_size: (self.width-20), None
+                line_height: 1.5
+                valign: "top"
+        # button(s) : see .py
+
+<MainScreen>:
+    BoxLayout:
+        id: main
+        orientation: 'vertical'
+        # menu : see .py
+
+<SetScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            id: settings_content
+        BoxLayout:
+            size_hint_y: 0.1
+            Button:
+                id: reset_settings_msg
+                text: 'RESET'
+
+<SelectImageFileScreen>:
+    BoxLayout:
+        id: selectimagefile
+        orientation: 'vertical'
+
+        BoxLayout:
+            size_hint_y: 0.1
+            spacing: 2
+            padding: 2
+            Button:
+                text: 'Icon View'
+                background_normal: ''
+                background_color: (38/255.0, 196/255.0, 236/255.0, 1.0)
+                on_press: fc.view_mode = 'icon'
+            Button:
+                text: 'List View'
+                background_normal: ''
+                background_color: (38/255.0, 196/255.0, 236/255.0, 1.0)
+                on_press: fc.view_mode = 'list'
+
+        FileChooser:
+            id: fc
+            FileChooserIconLayout
+            FileChooserListLayout
+        # menu : see .py
+
+<CaptureImageScreen>:
+    BoxLayout:
+        id: captureimage
+        orientation: 'vertical'
+
+        BoxLayout:
+            Camera:
+                id: camera
+                resolution: (-1, -1)
+                #resolution: (640, 480)
+                allow_stretch: True
+                keep_ratio: True
+                play: True
+
+                canvas.before:
+                    PushMatrix
+                    Rotate:
+                        angle: -90 if root.is_android() else 0
+                        origin: self.center
+                canvas.after:
+                    PopMatrix
+
+        BoxLayout:
+            size_hint_y: 0.1
+            spacing: 2
+            padding: 2
+            ToggleButton:
+                id: cameraonoff
+                text: 'Camera ON --> OFF'
+                background_normal: ''
+                background_color: (38/255.0, 196/255.0, 236/255.0, 1.0)
+                on_press:
+                    root.camera_onoff()
+
+            Button:
+                text: 'Capture image'
+                background_normal: ''
+                background_color: (38/255.0, 196/255.0, 236/255.0, 1.0)
+                on_press:
+                    root.capture()
+        # menu : see .py
+
+<DisplayImageScreen>:
+    Label:
+        id: imagepath
+        disabled: True
+        opacity: 0
+
+    BoxLayout:
+
+        id: displayimage
+        orientation: 'vertical'
+        spacing: 2
+        padding: 2
+
+        Image:
+            id: imageView
+            allow_stretch: True
+            keep_ratio: True
+            source: imagepath.text
+
+            canvas.before:
+                PushMatrix
+                Rotate:
+                    angle: root.angle
+                    origin: self.center
+            canvas.after:
+                PopMatrix
+
+        Label:
+            size_hint_y: 0.1
+            id: imagetext
+            markup: True
+            canvas.before:
+                Color:
+                    rgb: (0.5, 0.5, 0.4, 1.0)
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            text: root.image_text(imagepath.text)
+        Button:
+            id: solving
+            size_hint_y: 0.1
+            text: 'Solve'
+            background_normal: ''
+            background_down: ''
+            background_color: (178/255.0, 34/255.0, 34/255.0, 1.0)
+            on_press: self.text = '... Solving in progress ...'
+            on_release:
+                root.solve(imagepath.text)
+                self.text = 'Solve'
+        # parameters (expert mode case) : see .py
+        # menu : see .py
+
+<DisplaySolutionScreen>:
+
+    Label:
+        id: solutionpath
+        disabled: True
+        opacity: 0
+    Label:
+        id: imagepath
+        disabled: True
+        opacity: 0
+
+    BoxLayout:
+        id: displaysolution
+        orientation: 'vertical'
+        spacing: 2
+        padding: 2
+
+        Image:
+            allow_stretch: True
+            keep_ratio: True
+            source: solutionpath.text
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: 0.1
+
+            Label:
+                id:imagetext
+                markup: True
+                canvas.before:
+                    Color:
+                        rgb: (0.5, 0.5, 0.4, 1.0)
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                text: root.image_text(imagepath.text)
+            Label:
+                id:solutiontext
+                markup: True
+                canvas.before:
+                    Color:
+                        rgb: (0.5, 0.5, 0.4, 1.0)
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                text: root.solution_text(solutionpath.text)
+        # menu : see .py
+
