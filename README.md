@@ -1,2 +1,3 @@
 # visualsudoku
-Visual Sudoku Application
+Visual Sudoku Application with kivy
+
