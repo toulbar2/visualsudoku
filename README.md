@@ -21,15 +21,17 @@ Note : current version with "WS" mode, "LOCAL" mode not delivered.
 
   - create _kivy_venv
 
-      pip3 install --upgrade pip wheel setuptools virtualenv
+        pip3 install --upgrade pip wheel setuptools virtualenv
+        python3 -m venv _kivy_venv
+        source _kivy_venv/bin/activate
 
-      python3 -m venv _kivy_venv
+  - for App and kivy :
 
-      source _kivy_venv/bin/activate
+        pip3 install -r fab/requirements_ws.txt
 
-  - for App and kivy : pip3 install -r fab/requirements_ws.txt
+  - for buildozer :
 
-  - for buildozer : pip3 install -r fab/requirements_buildozer.txt
+        pip3 install -r fab/requirements_buildozer.txt
 
 # Linux - Run App :
 
@@ -47,11 +49,9 @@ Note : current version with "WS" mode, "LOCAL" mode not delivered.
 
   - create :
 
-    source _kivy_venv/bin/activate
-
-    cd app
-
-    buildozer init
+        source _kivy_venv/bin/activate
+        cd app
+        buildozer init
 
   => buildozer.spec  ... modify ...
 
@@ -72,8 +72,8 @@ Note : current version with "WS" mode, "LOCAL" mode not delivered.
         buildozer android debug deploy run
         => bin/*-debug.apk
 
-    buildozer -v android debug deploy run logcat > my_log.txt
-    buildozer -v android debug deploy run logcat | grep App
+        buildozer -v android debug deploy run logcat > my_log.txt
+        buildozer -v android debug deploy run logcat | grep App
 
   => .buildozer
 
@@ -86,8 +86,8 @@ Note : current version with "WS" mode, "LOCAL" mode not delivered.
 
   - Open Android Studio
 
-    cd ~/android-studio-2021.2.1.15-linux/android-studio/bin
-    ./studio.sh
+        cd ~/android-studio-2021.2.1.15-linux/android-studio/bin
+        ./studio.sh
 
   - Generate key
 
@@ -110,19 +110,15 @@ See https://wiki.labomedia.org/index.php/Publier_une_application_sur_Google_Play
 
   - Export some variables
 
-export P4A_RELEASE_KEYSTORE=<path-to>key/visualsudoku_key.jks
-
-export P4A_RELEASE_KEYSTORE_PASSWD=<passwd-value>
-
-export P4A_RELEASE_KEYALIAS_PASSWD=<passwd-value>
-
-export P4A_RELEASE_KEYALIAS=visualsudoku_key
+        export P4A_RELEASE_KEYSTORE=<path-to>key/visualsudoku_key.jks
+        export P4A_RELEASE_KEYSTORE_PASSWD=<passwd-value>
+        export P4A_RELEASE_KEYALIAS_PASSWD=<passwd-value>
+        export P4A_RELEASE_KEYALIAS=visualsudoku_key
 
   - Make release aab
 
-    cd app
-
-    buildozer -v android release
+        cd app
+        buildozer -v android release
 
   => bin/visualsudoku-0.1-arm64-v8a_armeabi-v7a-release.aab
 
@@ -141,23 +137,21 @@ https://developer.android.com/studio/command-line/bundletool
 
   - Generate a set of APKs from your app bundle (by bundletool command)
 
-    cp bin/visualsudoku-0.1-arm64-v8a_armeabi-v7a-release.aab ../fab/bundletool/.
+        cp bin/visualsudoku-0.1-arm64-v8a_armeabi-v7a-release.aab ../fab/bundletool/.
+        cd ../fab/bundletool
 
-    cd ../fab/bundletool
-
-    java -jar bundletool-all-1.11.0.jar build-apks --bundle=visualsudoku-0.1-arm64-v8a_armeabi-v7a-release.aab --output=visualsudoku-release.apks --ks=<path-to>key/visualsudoku_key.jks --ks-pass=pass:<passd-value> --ks-key-alias=visualsudoku_key --key-pass=pass:<passd-value> --mode=universal
+        java -jar bundletool-all-1.11.0.jar build-apks --bundle=visualsudoku-0.1-arm64-v8a_armeabi-v7a-release.aab --output=visualsudoku-release.apks --ks=<path-to>key/visualsudoku_key.jks --ks-pass=pass:<passd-value> --ks-key-alias=visualsudoku_key --key-pass=pass:<passd-value> --mode=universal
 
   => visualsudoku-release.apks
 
-  unzip -p visualsudoku-release.apks universal.apk > visualsudoku-release.apk
+        unzip -p visualsudoku-release.apks universal.apk > visualsudoku-release.apk
 
   => APK visualsudoku-release.apk
 
      (or mv visualsudoku.apks visualsudoku.zip unzip ... => universal.apk ...)
 
-  cp fab/bundletool/visualsudoku-0.1-arm64-v8a_armeabi-v7a-release.aab release/.
-
-  cp fab/bundletool/visualsudoku-release.apk release/.
+        cp fab/bundletool/visualsudoku-0.1-arm64-v8a_armeabi-v7a-release.aab release/.
+        cp fab/bundletool/visualsudoku-release.apk release/.
 
 - See also https://fr.techbriefly.com/comment-convertir-un-app-bundle-au-format-aab-en-fichier-apk-tech-42080/
 
