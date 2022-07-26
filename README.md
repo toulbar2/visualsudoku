@@ -2,6 +2,12 @@
 
 Visual Sudoku Application with kivy
 
+# Android application download link 
+
+http://147.100.179.250/visualsudoku-release.apk
+
+(install the following android application ; in your parameter settings for the Visual Sudoku app, allows accessing to camera and files ; rerun the app)
+
 # Desc
 
 main.py App developed with kivy, calling toulbar2_visual_sudoku_puzzle.py 
