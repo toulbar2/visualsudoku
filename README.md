@@ -1,21 +1,47 @@
 # visualsudoku
 
-Visual Sudoku Application with kivy
+Visual Sudoku Application
 
-# Android application download link 
+# Users
 
-http://147.100.179.250/visualsudoku-release.apk
+- The application allows to capture a grid from its own camera or to select a
+  grid among the smartphone existing files (for example files coming from 
+  'DCIM', in .jpg or .png formats). Once the grid has been chosen, the
+  application solves it and displays the solution (that it is possible to save
+  as an image file).
 
-(install the following android application ; in your parameter settings for the Visual Sudoku app, allows accessing to camera and files ; rerun the app)
+- Presentation : see the [description page](https://toulbar2.github.io/toulbar2/examples/vsapp_apk.html)
 
-# Desc
+- Download and install :
+
+  To install the 'Visual Sudoku' application on smartphone :
+
+  1) Download the visualsudokurelease.apk APK file from Github repository :
+
+     [https://github.com/toulbar2/visualsudoku/releases/latest](https://github.com/toulbar2/visualsudoku/releases/latest)
+
+  2) Click on the downloaded visualsudokurelease.apk APK file to ask for
+     installation (you have to accept to 'install anyway' from unknown
+     developer).
+
+  3) In your parameter settings for the app, give permissions to the 
+     'Visual Sudoku' application
+     (smartphone menu 'Parameters' > 'Applications' > 'Visual Sudoku') :
+     allow camera (required to capture grids), files and multimedia contents
+     (required to save images as files). Re-run the app.
+
+  For more details, see the [description page](https://toulbar2.github.io/toulbar2/examples/vsapp_apk.html)
+
+# Development
+
+## Desc
 
 main.py App developed with kivy, calling toulbar2_visual_sudoku_puzzle.py 
 from ws web services, in order to solve sudoku grid image.
 
 Note : current version with "WS" mode, "LOCAL" mode not delivered.
 
-# App
+## App
 
   - code : 'app' folder
 
@@ -23,7 +49,7 @@ Note : current version with "WS" mode, "LOCAL" mode not delivered.
 
   - visualsudoku.kv
 
-# Python virtual environment :
+## Python virtual environment :
 
   - create _kivy_venv
 
@@ -39,7 +65,7 @@ Note : current version with "WS" mode, "LOCAL" mode not delivered.
 
         pip3 install -r fab/requirements_buildozer.txt
 
-# Linux - Run App :
+## Linux - Run App :
 
   - requirements_ws.txt required
 
@@ -49,7 +75,7 @@ Note : current version with "WS" mode, "LOCAL" mode not delivered.
         cd app
         python3 main.py
 
-# Android - Init :
+## Android - Init :
 
   - requirements_ws.txt and requirements_buildozer.txt required
 
@@ -61,7 +87,7 @@ Note : current version with "WS" mode, "LOCAL" mode not delivered.
 
   => buildozer.spec  ... modify ...
 
-# Android - Build install and run App (debug) :
+## Android - Build install and run App (debug) :
 
   - requirements_ws.txt and requirements_buildozer.txt required
 
@@ -83,7 +109,7 @@ Note : current version with "WS" mode, "LOCAL" mode not delivered.
 
   => .buildozer
 
-# Android - APK delivery :
+## Android - APK delivery :
 
 - Generate a key by Android Studio
 
