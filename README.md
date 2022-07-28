@@ -1,12 +1,11 @@
 # Visual Sudoku Application
 
-See [PRESENTATION](https://toulbar2.github.io/toulbar2/examples/vsapp_apk.html)
+Presentation online at [description page](https://toulbar2.github.io/toulbar2/examples/vsapp_apk.html).
 
 The application allows to capture a grid from its own camera or to select a
-grid among the smartphone existing files (for example files coming from 
-'DCIM', in .jpg or .png formats). Once the grid has been chosen, the
-application solves it and displays the solution (that it is possible to save
-as an image file).
+grid among the smartphone existing image files. Once the grid has been chosen,
+the application solves it and displays the solution (that it is possible to
+save as an image file).
 
 # Download and install on smartphone :
 
