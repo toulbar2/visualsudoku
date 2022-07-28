@@ -1,6 +1,6 @@
 # Visual Sudoku Application
 
-See presentation at : [description page](https://toulbar2.github.io/toulbar2/examples/vsapp_apk.html)
+See [PRESENTATION](https://toulbar2.github.io/toulbar2/examples/vsapp_apk.html)
 
 The application allows to capture a grid from its own camera or to select a
 grid among the smartphone existing files (for example files coming from 
@@ -8,7 +8,9 @@ grid among the smartphone existing files (for example files coming from
 application solves it and displays the solution (that it is possible to save
 as an image file).
 
-# Download and install the 'Visual Sudoku' application on smartphone :
+# Download and install on smartphone :
+
+  To download and install the 'Visual Sudoku' application on smartphone :
 
   1) Download the visualsudoku-release.apk APK file from Github repository :
 
